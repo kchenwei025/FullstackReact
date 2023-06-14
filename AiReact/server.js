@@ -15,6 +15,7 @@ const db = new pg.Pool({
 });
 const API_KEY = process.env.API_KEY;
 console.log(API_KEY);
+app.use(express.static("src"));
 
 app.get("/post", (req, res) => {
   db.query("SELECT * FROM post", []).then((result) => {
