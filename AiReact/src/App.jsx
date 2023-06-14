@@ -10,6 +10,7 @@ const App = () => {
   const [chatRoomColor, SetChatRoomColor] = useState(false);
   const [armyColor, setArmyColor] = useState(false);
   const [careerColor, setCareerColor] = useState(false);
+  const [darkModeColor, setDarkModeColor] = useState(false);
   const [chatRoomStatus, setChatRoomStatus] = useState(false);
   const [posts, setPosts] = useState([]);
   const [guessCorrect, setGuessCorrect] = useState([]);
@@ -105,8 +106,6 @@ const App = () => {
       mainElement.style.backgroundColor = "DarkSeaGreen";
       setArmyColor(true);
     }
-
-    console.log(backStory);
   };
 
   const careerFact = () => {
@@ -129,16 +128,17 @@ const App = () => {
 
   const darkMode = () => {
     const mainElement = document.querySelector(".main");
-    const currentColor = mainElement.style.backgroundColor;
 
-    if (currentColor === "black") {
+    if (darkModeColor) {
       setBackStory("");
       mainElement.style.backgroundColor = "";
+      setDarkModeColor(false);
     } else {
       setBackStory(
         "You are extremly facinated about death fact, You always find a way to warn people about the danger in this world. You always provide number and death rates about death rate involed anything that you were asked."
       );
       mainElement.style.backgroundColor = "black";
+      setDarkModeColor(true);
     }
 
     console.log("clicked");
@@ -283,11 +283,13 @@ const App = () => {
 
       <section className="main">
         {!title && <h1>Welcome to WeiChatGPT</h1>}
+        <p>Hover here to see intruction</p>
         <div className="tutorial">
-          <p>Army AI(green) :Tell Army Facts</p>
-          <p>Career AI(yellow) :Guide job seaching Facts</p>
-          <p>Dark mode AI(black): Tell death Facts</p>
-          <p>Click any one of them to switch back to normal AI</p>
+          <p>1. ChatRoom(teal): Guess who is AI with other users</p>
+          <p>2. Army AI(green) :Tell Army Facts </p>{" "}
+          <p>3. Career AI(yellow) :Guide job seaching Facts</p>
+          <p>4. Dark mode AI(black): Tell death Facts</p>
+          <p>Click selected AI to switch back to normal AI</p>
         </div>
         <ul className="feed">
           {!chatRoomStatus
